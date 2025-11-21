@@ -1,0 +1,194 @@
+RESUMEN - DEPLOYMENT DE APLICACIÓN PARA COMPARTIR
+==================================================
+
+Tu dashboard está funcionando perfectamente en local.
+Ahora vamos a desplegarlo para que sea accesible públicamente.
+
+==================================================
+ARCHIVOS ACTUALIZADOS
+==================================================
+
+1. app.py - Actualizado para usar Streamlit secrets
+2. .gitignore - Para excluir archivos innecesarios
+3. .streamlit/config.toml - Configuración de Streamlit
+4. .streamlit/secrets.toml.example - Ejemplo de configuración de secrets
+5. README_GITHUB.md - README profesional para GitHub
+6. GUIA_DEPLOYMENT.txt - Guía paso a paso completa
+
+==================================================
+PASOS RÁPIDOS PARA DEPLOYMENT
+==================================================
+
+PASO 1: Preparar archivos
+-------------------------
+1. Descargar todos los archivos actualizados
+2. Reemplazar en tu carpeta proyecto_dashboard:
+   - app.py (versión actualizada)
+   - Agregar: .gitignore
+   - Agregar: carpeta .streamlit con sus archivos
+   - Renombrar README_GITHUB.md a README.md
+
+PASO 2: Crear repositorio en GitHub
+------------------------------------
+1. Ir a https://github.com
+2. Crear cuenta si no tienes
+3. Click en "+" > "New repository"
+4. Nombre: student-performance-dashboard
+5. Public
+6. Create repository
+
+PASO 3: Subir archivos a GitHub
+--------------------------------
+OPCIÓN FÁCIL - GitHub Desktop:
+1. Descargar GitHub Desktop: https://desktop.github.com/
+2. Instalar y hacer login
+3. File > Add Local Repository
+4. Seleccionar carpeta proyecto_dashboard
+5. Publish repository
+6. Push
+
+OPCIÓN COMANDO - Git:
+En terminal dentro de proyecto_dashboard:
+```
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/TU_USUARIO/student-performance-dashboard.git
+git push -u origin main
+```
+
+PASO 4: Deploy en Streamlit Cloud
+----------------------------------
+1. Ir a https://share.streamlit.io/
+2. Sign in with GitHub
+3. New app
+4. Seleccionar tu repositorio: student-performance-dashboard
+5. Branch: main
+6. Main file: app.py
+7. Click "Advanced settings"
+8. En Secrets, pegar:
+
+```toml
+[mongodb]
+connection_string = "mongodb+srv://shirleyp:Bigdata2$@student-performance-mongo.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false"
+database = "student_performance"
+collection = "students"
+```
+
+9. Click "Deploy!"
+10. Esperar 5-10 minutos
+
+PASO 5: Compartir con compañeros
+---------------------------------
+1. Una vez desplegado, copiar la URL
+2. Compartir: https://tu-usuario-student-performance-dashboard.streamlit.app
+3. Tus compañeros solo necesitan el link
+
+==================================================
+ALTERNATIVA RÁPIDA - NGROK (Temporal)
+==================================================
+
+Si necesitas compartir AHORA sin GitHub:
+
+1. Descargar ngrok: https://ngrok.com/download
+2. Extraer ngrok.exe en proyecto_dashboard
+3. Ejecutar dashboard: streamlit run app.py
+4. En otra terminal: ngrok http 8501
+5. Copiar URL pública que aparece (ejemplo: https://abc123.ngrok.io)
+6. Compartir esa URL
+
+LIMITACIONES:
+- Solo funciona mientras tu PC esté encendida
+- URL cambia cada vez que reinicias ngrok
+- Versión gratis tiene límite de tiempo
+
+==================================================
+RECOMENDACIÓN PARA PRESENTACIÓN
+==================================================
+
+Para tu pitch del sábado 22 de noviembre:
+
+OPCIÓN 1 - Streamlit Cloud (Mejor):
+✓ URL permanente y profesional
+✓ Funciona 24/7
+✓ No depende de tu computadora
+✓ Impresiona más en presentaciones académicas
+
+OPCIÓN 2 - Ngrok (Backup):
+✓ Rápido de configurar
+✓ Funciona inmediatamente
+✗ Temporal
+✗ Depende de tu PC
+
+OPCIÓN 3 - Local:
+✓ Sin configuración adicional
+✗ Solo tú puedes verlo
+✗ Menos impresionante para el pitch
+
+==================================================
+CHECKLIST FINAL
+==================================================
+
+Antes de la presentación del sábado:
+
+□ Dashboard funcionando localmente
+□ Todos los modelos cargando correctamente
+□ Repositorio en GitHub creado
+□ Aplicación desplegada en Streamlit Cloud
+□ URL pública funcionando
+□ Capturas de pantalla tomadas como backup
+□ Documento/presentación preparado
+□ Pitch de 5 minutos practicado
+
+==================================================
+ESTRUCTURA DE TU PITCH (5 minutos)
+==================================================
+
+Minuto 1: Problema
+- Necesidad de predecir rendimiento estudiantil
+- Intervención temprana para estudiantes en riesgo
+- Uso de datos para toma de decisiones
+
+Minuto 2: Solución Técnica
+- Base de datos en la nube (Azure Cosmos DB)
+- 3 modelos de ML/DL con alto rendimiento
+- Dashboard interactivo accesible desde cualquier lugar
+
+Minutos 3-4: DEMO EN VIVO
+- Mostrar URL pública
+- Navegar por secciones del dashboard
+- Realizar predicción en tiempo real
+- Mostrar comparación de modelos
+
+Minuto 5: Valor y Cierre
+- Aplicable a instituciones educativas reales
+- Escalable y en la nube
+- Código abierto en GitHub
+- Invitar a probar la aplicación
+
+==================================================
+SOPORTE
+==================================================
+
+Documentación:
+- Streamlit: https://docs.streamlit.io/
+- GitHub: https://docs.github.com/
+
+Si algo falla:
+1. Revisar logs en Streamlit Cloud
+2. Verificar que secrets estén configurados
+3. Confirmar que todos los archivos estén en GitHub
+4. Tener backup local funcionando
+
+==================================================
+CONTACTO Y ACTUALIZACIONES
+==================================================
+
+Proyecto: Student Performance Prediction System
+Fecha límite: Sábado 22 de noviembre, 8:00 AM
+Duración pitch: 5 minutos
+
+¡Éxito en tu presentación!
+
+==================================================

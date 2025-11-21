@@ -1,0 +1,251 @@
+GUÍA PASO A PASO - DASHBOARD DE STREAMLIT
+==========================================
+
+PROYECTO: Sistema de Predicción de Rendimiento Estudiantil
+AUTOR: Shirley P.
+FECHA: Noviembre 2024
+
+==========================================
+PASO 1: PREPARAR EL DIRECTORIO
+==========================================
+
+1.1. Crear una carpeta para el proyecto, por ejemplo:
+     C:\Users\TuUsuario\proyecto_dashboard
+
+1.2. Copiar todos los archivos descargados a esta carpeta:
+     - app.py
+     - requirements.txt
+     - README.md
+     - check_setup.py
+     - model_results_example.json
+
+1.3. Copiar los archivos de modelos entrenados desde la carpeta proyecto2:
+     - student_performance_neural_network.h5
+     - scaler_neural_network.pkl
+     - random_forest_model.pkl
+     - xgboost_model.pkl
+
+1.4. (OPCIONAL) Si tienes el archivo de resultados, cópialo también:
+     - model_results.json
+
+Al finalizar, tu carpeta debe tener esta estructura:
+
+proyecto_dashboard/
+├── app.py
+├── requirements.txt
+├── README.md
+├── check_setup.py
+├── model_results_example.json
+├── student_performance_neural_network.h5
+├── scaler_neural_network.pkl
+├── random_forest_model.pkl
+└── xgboost_model.pkl
+
+==========================================
+PASO 2: VERIFICAR ARCHIVOS
+==========================================
+
+2.1. Abrir terminal o Command Prompt
+
+2.2. Navegar a la carpeta del proyecto:
+     cd C:\Users\TuUsuario\proyecto_dashboard
+
+2.3. Ejecutar el script de verificación:
+     python check_setup.py
+
+2.4. Verificar que todos los archivos requeridos estén presentes
+     El script mostrará una lista con ✓ para archivos encontrados
+     y ✗ para archivos faltantes
+
+Si falta algún archivo, copiarlo antes de continuar.
+
+==========================================
+PASO 3: INSTALAR DEPENDENCIAS
+==========================================
+
+3.1. (RECOMENDADO) Crear un entorno virtual:
+     python -m venv venv
+
+3.2. Activar el entorno virtual:
+     
+     En Windows:
+     venv\Scripts\activate
+     
+     En Mac/Linux:
+     source venv/bin/activate
+
+3.3. Instalar las dependencias:
+     pip install -r requirements.txt
+
+3.4. Esperar a que se instalen todos los paquetes
+     Esto puede tomar varios minutos
+
+NOTA: Si hay errores de instalación:
+- Verificar que Python 3.8+ esté instalado: python --version
+- Actualizar pip: python -m pip install --upgrade pip
+- Intentar instalar nuevamente
+
+==========================================
+PASO 4: VERIFICAR CONEXIÓN A MONGODB
+==========================================
+
+4.1. Verificar que Azure Cosmos DB esté activo y accesible
+
+4.2. La conexión actual en el código es:
+     mongodb+srv://shirleyp:Bigdata2$@student-performance-mongo.mongocluster.cosmos.azure.com/
+
+4.3. Si necesitas cambiar la conexión:
+     - Abrir app.py en un editor de texto
+     - Buscar la función get_mongo_connection()
+     - Modificar connection_string con tu cadena de conexión
+
+4.4. Verificar que la base de datos tenga:
+     - Nombre: student_performance
+     - Colección: students
+     - Datos de estudiantes cargados
+
+==========================================
+PASO 5: EJECUTAR EL DASHBOARD
+==========================================
+
+5.1. Desde la terminal, en la carpeta del proyecto, ejecutar:
+     streamlit run app.py
+
+5.2. El dashboard se abrirá automáticamente en el navegador
+     URL: http://localhost:8501
+
+5.3. Si no se abre automáticamente, copiar la URL de la terminal
+     y pegarla en el navegador
+
+==========================================
+PASO 6: USAR EL DASHBOARD
+==========================================
+
+6.1. PÁGINA DE INICIO
+     - Ver resumen del proyecto
+     - Métricas generales de la base de datos
+     - Estadísticas descriptivas
+
+6.2. EXPLORACIÓN DE DATOS
+     - Ver datos de estudiantes
+     - Analizar estadísticas descriptivas
+     - Explorar visualizaciones interactivas:
+       * Distribuciones de variables
+       * Matriz de correlación
+       * Gráficos de dispersión
+       * Box plots
+
+6.3. PREDICCIONES
+     - Ingresar datos de un estudiante nuevo
+     - Ajustar los sliders y seleccionar opciones
+     - Hacer clic en "Realizar Predicción"
+     - Ver predicciones de los 3 modelos
+     - Comparar resultados
+
+6.4. COMPARACIÓN DE MODELOS
+     - Ver métricas de evaluación (MAE, MSE, RMSE, R2)
+     - Comparar rendimiento de modelos
+     - Identificar el mejor modelo
+
+6.5. ANÁLISIS ESTADÍSTICO
+     - Realizar análisis univariado
+     - Explorar relaciones bivariadas
+     - Visualizar matriz de dispersión multivariada
+
+==========================================
+PASO 7: CREAR model_results.json (OPCIONAL)
+==========================================
+
+Si no tienes el archivo model_results.json:
+
+7.1. Renombrar model_results_example.json a model_results.json
+
+7.2. O crear un archivo nuevo model_results.json con el contenido
+     del ejemplo
+
+7.3. Actualizar los valores con las métricas reales de tus modelos
+     obtenidas durante el entrenamiento en Colab
+
+==========================================
+SOLUCIÓN DE PROBLEMAS COMUNES
+==========================================
+
+PROBLEMA: "ModuleNotFoundError"
+SOLUCIÓN: Verificar que todas las dependencias estén instaladas
+          pip install -r requirements.txt
+
+PROBLEMA: "Error conectando a MongoDB"
+SOLUCIÓN: - Verificar conexión a internet
+          - Verificar credenciales en app.py
+          - Verificar firewall de Azure Cosmos DB
+          - Verificar que la base de datos tenga datos
+
+PROBLEMA: "Error cargando modelos"
+SOLUCIÓN: - Verificar que todos los archivos .h5 y .pkl estén presentes
+          - Verificar que estén en el mismo directorio que app.py
+          - Verificar nombres de archivos (mayúsculas/minúsculas)
+
+PROBLEMA: El dashboard no se abre en el navegador
+SOLUCIÓN: Copiar manualmente la URL de la terminal
+          Generalmente: http://localhost:8501
+
+PROBLEMA: Puerto 8501 ocupado
+SOLUCIÓN: Usar otro puerto:
+          streamlit run app.py --server.port 8502
+
+==========================================
+CAPTURAS DE PANTALLA RECOMENDADAS
+==========================================
+
+Para la presentación del proyecto, tomar capturas de:
+
+1. Página de inicio con métricas generales
+2. Exploración de datos con gráficos
+3. Matriz de correlación
+4. Predicción de un estudiante (con valores ingresados)
+5. Resultados de predicciones de los 3 modelos
+6. Comparación de modelos con gráficos
+7. Análisis estadístico
+
+==========================================
+TIPS ADICIONALES
+==========================================
+
+- El dashboard se actualiza automáticamente al modificar el código
+- Usar Ctrl+C en la terminal para detener el servidor
+- Los datos se cargan automáticamente desde MongoDB
+- Las predicciones son en tiempo real
+- Puedes modificar los estilos CSS en app.py para personalizar colores
+
+==========================================
+PARA LA PRESENTACIÓN
+==========================================
+
+Elementos clave a demostrar:
+
+1. Conexión exitosa a Azure Cosmos DB (MongoDB API)
+2. Visualización de datos almacenados en la nube
+3. Predicciones con los 3 modelos entrenados
+4. Comparación de rendimiento entre modelos
+5. Interfaz interactiva y profesional
+6. Análisis estadístico completo
+
+==========================================
+CONTACTO Y REFERENCIAS
+==========================================
+
+Documentación de Streamlit: https://docs.streamlit.io
+Documentación de MongoDB: https://docs.mongodb.com
+Documentación de Plotly: https://plotly.com/python/
+
+Para dudas sobre el código, revisar:
+- README.md: Descripción general del proyecto
+- app.py: Código comentado del dashboard
+- requirements.txt: Lista de dependencias
+
+==========================================
+FIN DE LA GUÍA
+==========================================
+
+Última actualización: Noviembre 2024
+Versión: 1.0
