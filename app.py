@@ -119,9 +119,8 @@ def main():
             st.plotly_chart(fig, use_container_width=True)
         
         with col2:
-            fig = px.scatter(df, x='Study_Hours_Per_Week', y='GPA', 
-                           title='Horas de Estudio vs GPA', trendline="ols")
-            st.plotly_chart(fig, use_container_width=True)
+           fig = px.scatter(df, x='Study_Hours_Per_Week', y='GPA', 
+               title='Horas de Estudio vs GPA')
     
     with tab2:
         st.header("Análisis Exploratorio")
